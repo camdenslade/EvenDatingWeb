@@ -1,5 +1,7 @@
 import { useState, FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import GlobalBackground from '../components/GlobalBackground'
 import { FormInput, FormTextarea } from '../components/FormInput'
 import { RateLimiter } from '../utils/rateLimiter'
 import {
@@ -11,32 +13,35 @@ import {
   containsSpamPatterns,
   generateCSRFToken,
 } from '../utils/validation'
-import './Contact.css'
+import './Suggestions.css'
 
-interface FormErrors {
-  name?: string
-  email?: string
-  subject?: string
-  message?: string
-  general?: string
-}
-
-function Contact() {
-  const navigate = useNavigate()
+function Suggestions() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    category: '',
     subject: '',
-    message: '',
+    suggestion: '',
     csrfToken: generateCSRFToken(),
   })
-  const [errors, setErrors] = useState<FormErrors>({})
+  const [errors, setErrors] = useState<Partial<Record<string, string>>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
-  const [rateLimiter] = useState(() => new RateLimiter('contact-form-rate-limit'))
+  const [rateLimiter] = useState(() => new RateLimiter('suggestions-form-rate-limit'))
+
+  const suggestionCategories = [
+    { value: '', label: 'Select a category' },
+    { value: 'feature', label: 'Feature Request' },
+    { value: 'improvement', label: 'Improvement' },
+    { value: 'bug', label: 'Bug Report' },
+    { value: 'ui', label: 'UI/UX Design' },
+    { value: 'rating', label: 'Rating System' },
+    { value: 'safety', label: 'Safety & Security' },
+    { value: 'other', label: 'Other' },
+  ]
 
   const validateForm = (): boolean => {
-    const newErrors: FormErrors = {}
+    const newErrors: Partial<Record<string, string>> = {}
 
     // Validate name
     if (!formData.name.trim()) {
@@ -52,6 +57,11 @@ function Contact() {
       newErrors.email = 'Please enter a valid email address'
     }
 
+    // Validate category
+    if (!formData.category) {
+      newErrors.category = 'Please select a category'
+    }
+
     // Validate subject
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required'
@@ -59,13 +69,13 @@ function Contact() {
       newErrors.subject = 'Subject must be between 3 and 200 characters'
     }
 
-    // Validate message
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required'
-    } else if (!isValidMessage(formData.message)) {
-      newErrors.message = 'Message must be between 10 and 5000 characters'
-    } else if (containsSpamPatterns(formData.message)) {
-      newErrors.message = 'Message contains suspicious content. Please revise.'
+    // Validate suggestion
+    if (!formData.suggestion.trim()) {
+      newErrors.suggestion = 'Suggestion is required'
+    } else if (!isValidMessage(formData.suggestion)) {
+      newErrors.suggestion = 'Suggestion must be between 10 and 5000 characters'
+    } else if (containsSpamPatterns(formData.suggestion)) {
+      newErrors.suggestion = 'Suggestion contains suspicious content. Please revise.'
     }
 
     setErrors(newErrors)
@@ -99,8 +109,9 @@ function Contact() {
       const sanitizedData = {
         name: sanitizeInput(formData.name),
         email: sanitizeInput(formData.email),
+        category: formData.category,
         subject: sanitizeInput(formData.subject),
-        message: sanitizeInput(formData.message),
+        suggestion: sanitizeInput(formData.suggestion),
         csrfToken: formData.csrfToken,
       }
 
@@ -108,7 +119,7 @@ function Contact() {
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
       // In production, send to your backend:
-      // const response = await fetch('/api/contact', {
+      // const response = await fetch('/api/suggestions', {
       //   method: 'POST',
       //   headers: {
       //     'Content-Type': 'application/json',
@@ -116,14 +127,15 @@ function Contact() {
       //   body: JSON.stringify(sanitizedData),
       // })
 
-      console.log('Form submitted:', sanitizedData)
+      console.log('Suggestion submitted:', sanitizedData)
 
       setSubmitSuccess(true)
       setFormData({
         name: '',
         email: '',
+        category: '',
         subject: '',
-        message: '',
+        suggestion: '',
         csrfToken: generateCSRFToken(),
       })
 
@@ -141,56 +153,37 @@ function Contact() {
   }
 
   const handleChange = (field: keyof typeof formData) => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData((prev) => ({
       ...prev,
       [field]: e.target.value,
     }))
     // Clear error for this field when user starts typing
-    if (errors[field as keyof FormErrors]) {
-      setErrors((prev) => ({
-        ...prev,
-        [field]: undefined,
-      }))
+    if (errors[field]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev }
+        delete newErrors[field]
+        return newErrors
+      })
     }
   }
 
   return (
-    <div className="contact-page">
-      <div className="background-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-        <div className="shape shape-3"></div>
-      </div>
-
-      <nav className="page-nav">
-        <button className="back-button" onClick={() => navigate('/')}>
-          ← Back
-        </button>
-        <div className="nav-links">
-          <button className="nav-link" onClick={() => navigate('/')}>
-            Home
-          </button>
-          <button className="nav-link" onClick={() => navigate('/roadmap')}>
-            Roadmap
-          </button>
-          <button className="nav-link" onClick={() => navigate('/support')}>
-            Support
-          </button>
-        </div>
-      </nav>
+    <div className="suggestions-page">
+      <GlobalBackground mode="dark" />
+      <Header />
 
       <div className="content">
         <div className="page-header">
-          <div className="logo-small">王</div>
-          <h1 className="page-title">Contact Us</h1>
-          <p className="page-subtitle">We'd love to hear from you</p>
+          <img src="/assets/Even-App-Logos/TransparentBG/EE-SolidWhite.png" alt="Even Dating Logo" className="logo-small" />
+          <h1 className="page-title">Suggestions</h1>
+          <p className="page-subtitle">Help us improve Even Dating</p>
         </div>
 
         {submitSuccess && (
           <div className="success-message" role="alert">
-            ✓ Thank you! Your message has been sent. We'll get back to you soon.
+            ✓ Thank you! Your suggestion has been submitted successfully. We appreciate your feedback!
           </div>
         )}
 
@@ -200,11 +193,11 @@ function Contact() {
           </div>
         )}
 
-        <form className="contact-form" onSubmit={handleSubmit} noValidate>
+        <form className="suggestions-form" onSubmit={handleSubmit} noValidate>
           <FormInput
-            id="name"
+            id="suggestion-name"
             type="text"
-            label="Name"
+            label="Your Name"
             value={formData.name}
             onChange={handleChange('name')}
             error={errors.name}
@@ -214,9 +207,9 @@ function Contact() {
           />
 
           <FormInput
-            id="email"
+            id="suggestion-email"
             type="email"
-            label="Email"
+            label="Email Address"
             value={formData.email}
             onChange={handleChange('email')}
             error={errors.email}
@@ -225,8 +218,32 @@ function Contact() {
             maxLength={254}
           />
 
+          <div className="form-group">
+            <label htmlFor="suggestion-category" className="form-label">
+              Category <span className="required">*</span>
+            </label>
+            <select
+              id="suggestion-category"
+              className={`form-select ${errors.category ? 'error' : ''}`}
+              value={formData.category}
+              onChange={handleChange('category')}
+              required
+            >
+              {suggestionCategories.map((cat) => (
+                <option key={cat.value} value={cat.value}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+            {errors.category && (
+              <span className="form-error" role="alert">
+                {errors.category}
+              </span>
+            )}
+          </div>
+
           <FormInput
-            id="subject"
+            id="suggestion-subject"
             type="text"
             label="Subject"
             value={formData.subject}
@@ -237,14 +254,15 @@ function Contact() {
           />
 
           <FormTextarea
-            id="message"
-            label="Message"
-            value={formData.message}
-            onChange={handleChange('message')}
-            error={errors.message}
+            id="suggestion-text"
+            label="Your Suggestion"
+            value={formData.suggestion}
+            onChange={handleChange('suggestion')}
+            error={errors.suggestion}
             required
             maxLength={5000}
-            rows={6}
+            rows={10}
+            placeholder="Please describe your suggestion in detail. What would you like to see improved or added to Even Dating?"
           />
 
           <input type="hidden" name="csrfToken" value={formData.csrfToken} />
@@ -258,14 +276,15 @@ function Contact() {
               className="submit-button"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? 'Submitting...' : 'Submit Suggestion'}
             </button>
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   )
 }
 
-export default Contact
+export default Suggestions
 

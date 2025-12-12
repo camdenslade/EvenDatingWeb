@@ -23,3 +23,25 @@ dist-ssr
 *.sln
 *.sw?
 
+.firebaserc
+firebase.json
+.firebase/hosting.ZGlzdA.cache
+.firebase/hosting.cHVibGlj.cache
+.github/workflows/firebase-hosting-merge.yml
+public/index.html
+public/404.html
+public/assets/Even-App-Logos/WhiteBG/EE-Transparent.png
+public/assets/Even-App-Logos/WhiteBG/EE-SolidDark.png
+public/assets/Even-App-Logos/WhiteBG/EE-SolidBlack.png
+public/assets/Even-App-Logos/TransparentBG/EE-SolidWhite.png
+public/assets/Even-App-Logos/TransparentBG/EE-SolidDark.png
+public/assets/Even-App-Logos/Outline-WhiteBG/EE-OutlineDark.png
+public/assets/Even-App-Logos/Outline-WhiteBG/EE-OutlineBlack.png
+public/assets/Even-App-Logos/Outline-NoBG/EE-OutlineWhite.png
+public/assets/Even-App-Logos/Outline-NoBG/EE-OutlineDark.png
+public/assets/Even-App-Logos/Outline-NoBG/EE-OutlineBlack.png
+public/assets/Even-App-Logos/Outline-DarkBG/EE-OutlineWhite.png
+public/assets/Even-App-Logos/Outline-DarkBG/EE-OutlineTransparent.png
+public/assets/Even-App-Logos/DarkBG/EE-Transparent.png
+public/assets/Even-App-Logos/DarkBG/EE-SolidWhite.png
+src/firebase.ts

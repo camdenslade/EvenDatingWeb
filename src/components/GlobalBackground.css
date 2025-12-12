@@ -1,0 +1,57 @@
+.global-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.background-circle {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.background-rect {
+  position: absolute;
+  width: 140%;
+  height: 220px;
+  border-radius: 30px;
+}
+
+@keyframes driftY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(35px);
+  }
+}
+
+@keyframes driftX {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(55px);
+  }
+}
+
+.circle-b {
+  animation: driftX 11s ease-in-out infinite;
+}
+
+.background-rect {
+  animation: driftXRect 13s ease-in-out infinite;
+}
+
+@keyframes driftXRect {
+  0%, 100% {
+    transform: rotate(-12deg) translateX(0);
+  }
+  50% {
+    transform: rotate(-12deg) translateX(40px);
+  }
+}
+

@@ -1,98 +1,9 @@
 .support-page {
   min-height: 100vh;
-  padding: 2rem 1.5rem;
+  padding: 6rem 1.5rem 2rem;
   position: relative;
-  background-color: #1a1a1a;
+  background-color: #222222;
   overflow-x: hidden;
-}
-
-.background-shapes {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.shape {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(40, 40, 40, 0.3) 0%, transparent 70%);
-  opacity: 0.4;
-}
-
-.shape-1 {
-  width: 400px;
-  height: 400px;
-  top: -150px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(50, 50, 50, 0.2) 0%, transparent 70%);
-}
-
-.shape-2 {
-  width: 300px;
-  height: 300px;
-  bottom: -100px;
-  left: -80px;
-  background: radial-gradient(circle, rgba(45, 45, 45, 0.25) 0%, transparent 70%);
-}
-
-.shape-3 {
-  width: 250px;
-  height: 250px;
-  top: 50%;
-  left: -50px;
-  background: radial-gradient(circle, rgba(40, 40, 40, 0.2) 0%, transparent 70%);
-}
-
-.page-nav {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
-}
-
-.back-button {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  transition: all 0.2s;
-  font-family: inherit;
-}
-
-.back-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.nav-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-link {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  transition: all 0.2s;
-  font-family: inherit;
-}
-
-.nav-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .content {
@@ -267,13 +178,18 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.2rem;
   display: flex;
   align-items: center;
   gap: 1rem;
   text-decoration: none;
   color: #ffffff;
   transition: all 0.3s;
+  justify-content: center;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
 }
 
 .resource-link:hover {
@@ -303,6 +219,24 @@
   color: #b0b0b0;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+}
+
+.email-info {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 1.5rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.email-link {
+  color: #ffffff;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.email-link:hover {
+  opacity: 0.8;
 }
 
 .ticket-button {
@@ -449,15 +383,8 @@
 }
 
 @media (max-width: 768px) {
-  .page-nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .nav-links {
-    width: 100%;
-    justify-content: flex-end;
+  .support-page {
+    padding: 5rem 1rem 2rem;
   }
 
   .page-title {

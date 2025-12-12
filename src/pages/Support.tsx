@@ -1,5 +1,11 @@
 import { useState, FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import GlobalBackground from '../components/GlobalBackground'
+import PrivacyPolicy from '../components/legal/PrivacyPolicy'
+import CommunityGuidelines from '../components/legal/CommunityGuidelines'
+import TermsOfService from '../components/legal/TermsOfService'
+import CookiePolicy from '../components/legal/CookiePolicy'
 import { FormInput, FormTextarea } from '../components/FormInput'
 import { RateLimiter } from '../utils/rateLimiter'
 import {
@@ -14,8 +20,8 @@ import {
 import './Support.css'
 
 function Support() {
-  const navigate = useNavigate()
   const [showTicketForm, setShowTicketForm] = useState(false)
+  const [openModal, setOpenModal] = useState<'privacy' | 'terms' | 'cookies' | 'guidelines' | null>(null)
   const [ticketFormData, setTicketFormData] = useState({
     name: '',
     email: '',
@@ -25,7 +31,7 @@ function Support() {
     description: '',
     csrfToken: generateCSRFToken(),
   })
-  const [ticketErrors, setTicketErrors] = useState<Record<string, string>>({})
+  const [ticketErrors, setTicketErrors] = useState<Partial<Record<string, string>>>({})
   const [isSubmittingTicket, setIsSubmittingTicket] = useState(false)
   const [ticketSuccess, setTicketSuccess] = useState(false)
   const [ticketRateLimiter] = useState(() => new RateLimiter('support-ticket-rate-limit'))
@@ -135,10 +141,21 @@ function Support() {
         csrfToken: ticketFormData.csrfToken,
       }
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      console.log('Support ticket submitted:', sanitizedData)
+      // Create mailto link with form data
+      const emailSubject = encodeURIComponent(`[${sanitizedData.category.toUpperCase()}] ${sanitizedData.subject} [Priority: ${sanitizedData.priority}]`)
+      const emailBody = encodeURIComponent(
+        `Support Ticket Submission\n\n` +
+        `Name: ${sanitizedData.name}\n` +
+        `Email: ${sanitizedData.email}\n` +
+        `Category: ${sanitizedData.category}\n` +
+        `Priority: ${sanitizedData.priority}\n\n` +
+        `Description:\n${sanitizedData.description}`
+      )
+      
+      const mailtoLink = `mailto:support@evendating.com?subject=${emailSubject}&body=${emailBody}`
+      
+      // Open email client
+      window.location.href = mailtoLink
 
       setTicketSuccess(true)
       setTicketFormData({
@@ -172,66 +189,22 @@ function Support() {
       [field]: e.target.value,
     }))
     if (ticketErrors[field]) {
-      setTicketErrors((prev) => ({
-        ...prev,
-        [field]: undefined,
-      }))
+      setTicketErrors((prev) => {
+        const newErrors = { ...prev }
+        delete newErrors[field]
+        return newErrors
+      })
     }
   }
 
   return (
     <div className="support-page">
-      <div className="background-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-        <div className="shape shape-3"></div>
-      </div>
-
-      <nav className="page-nav">
-        <button className="back-button" onClick={() => navigate('/')}>
-          ← Back
-        </button>
-        <div className="nav-links">
-          <button className="nav-link" onClick={() => navigate('/')}>
-            Home
-          </button>
-          <button className="nav-link" onClick={() => navigate('/contact')}>
-            Contact
-          </button>
-          <button className="nav-link" onClick={() => navigate('/roadmap')}>
-            Roadmap
-          </button>
-        </div>
-      </nav>
+      <GlobalBackground mode="dark" />
+      <Header />
 
       <div className="content">
-        <div className="page-header">
-          <div className="logo-small">王</div>
-          <h1 className="page-title">Support</h1>
-          <p className="page-subtitle">We're here to help you</p>
-        </div>
 
         <div className="support-sections">
-          <section className="contact-section">
-            <h2 className="section-title">Get in Touch</h2>
-            <div className="contact-options">
-              <div className="contact-card">
-                <div className="contact-icon">📧</div>
-                <h3 className="contact-title">Email Support</h3>
-                <p className="contact-description">Send us an email and we'll get back to you within 24 hours.</p>
-                <a href="mailto:support@evendating.com" className="contact-link">
-                  support@evendating.com
-                </a>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">💬</div>
-                <h3 className="contact-title">Live Chat</h3>
-                <p className="contact-description">Chat with our support team in real-time.</p>
-                <button className="contact-button">Start Chat</button>
-              </div>
-            </div>
-          </section>
-
           <section className="ticket-section">
             <h2 className="section-title">Submit a Support Ticket</h2>
             {!showTicketForm ? (
@@ -245,6 +218,12 @@ function Support() {
                 >
                   Create Support Ticket
                 </button>
+                <p className="email-info">
+                  Or email us directly at:{' '}
+                  <a href="mailto:support@evendating.com" className="email-link">
+                    support@evendating.com
+                  </a>
+                </p>
               </div>
             ) : (
               <div className="ticket-form-container">
@@ -394,26 +373,28 @@ function Support() {
           <section className="resources-section">
             <h2 className="section-title">Resources</h2>
             <div className="resources-list">
-              <a href="#" className="resource-link">
-                <span className="resource-icon">📖</span>
-                <span>User Guide</span>
-              </a>
-              <a href="#" className="resource-link">
-                <span className="resource-icon">🔒</span>
+              <button className="resource-link" onClick={() => setOpenModal('guidelines')}>
+                <span>Community Guidelines</span>
+              </button>
+              <button className="resource-link" onClick={() => setOpenModal('privacy')}>
                 <span>Privacy Policy</span>
-              </a>
-              <a href="#" className="resource-link">
-                <span className="resource-icon">📋</span>
+              </button>
+              <button className="resource-link" onClick={() => setOpenModal('terms')}>
                 <span>Terms of Service</span>
-              </a>
-              <a href="#" className="resource-link">
-                <span className="resource-icon">🍪</span>
+              </button>
+              <button className="resource-link" onClick={() => setOpenModal('cookies')}>
                 <span>Cookie Policy</span>
-              </a>
+              </button>
             </div>
           </section>
         </div>
       </div>
+      <Footer />
+
+      <PrivacyPolicy isOpen={openModal === 'privacy'} onClose={() => setOpenModal(null)} />
+      <CommunityGuidelines isOpen={openModal === 'guidelines'} onClose={() => setOpenModal(null)} />
+      <TermsOfService isOpen={openModal === 'terms'} onClose={() => setOpenModal(null)} />
+      <CookiePolicy isOpen={openModal === 'cookies'} onClose={() => setOpenModal(null)} />
     </div>
   )
 }
