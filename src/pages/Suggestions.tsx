@@ -13,6 +13,7 @@ import {
   containsSpamPatterns,
   generateCSRFToken,
 } from '../utils/validation'
+import { getApiBaseUrl, joinApiUrl } from '../utils/apiUrl'
 import './Suggestions.css'
 
 function Suggestions() {
@@ -112,23 +113,42 @@ function Suggestions() {
         category: formData.category,
         subject: sanitizeInput(formData.subject),
         suggestion: sanitizeInput(formData.suggestion),
-        csrfToken: formData.csrfToken,
       }
 
-      // Simulate API call (replace with actual API endpoint)
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const apiBaseUrl = getApiBaseUrl()
+      const url = joinApiUrl(apiBaseUrl, '/suggestions')
+      
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sanitizedData),
+      })
 
-      // In production, send to your backend:
-      // const response = await fetch('/api/suggestions', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(sanitizedData),
-      // })
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: 'Failed to submit suggestion' }))
+        
+        if (response.status === 429) {
+          setErrors({
+            general: 'Too many requests. Please wait before submitting another suggestion.',
+          })
+        } else if (response.status === 400) {
+          // Validation errors from backend
+          const backendErrors = errorData.message || errorData.errors || {}
+          setErrors({
+            ...(typeof backendErrors === 'string' ? { general: backendErrors } : backendErrors),
+          })
+        } else {
+          setErrors({
+            general: errorData.message || 'An error occurred. Please try again later.',
+          })
+        }
+        return
+      }
 
-      console.log('Suggestion submitted:', sanitizedData)
-
+      // Success
+      rateLimiter.recordRequest()
       setSubmitSuccess(true)
       setFormData({
         name: '',
@@ -145,7 +165,7 @@ function Suggestions() {
       }, 5000)
     } catch (error) {
       setErrors({
-        general: 'An error occurred. Please try again later.',
+        general: error instanceof Error ? error.message : 'An error occurred. Please try again later.',
       })
     } finally {
       setIsSubmitting(false)

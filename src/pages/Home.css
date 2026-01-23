@@ -1,5 +1,6 @@
 .home-page {
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   background-color: #222222;
   color: #ffffff;
   display: flex;
@@ -194,6 +195,9 @@
   transition: all 0.3s;
   font-family: inherit;
   border: none;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .cta-button.primary {
@@ -293,43 +297,46 @@
 }
 
 @media (max-width: 768px) {
-  .header-content {
-    padding: 1rem;
-  }
-
-  .header-nav {
-    gap: 1rem;
-  }
-
-  .nav-item {
-    font-size: 0.875rem;
-  }
-
-  .login-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-  }
-
   .hero-section {
-    padding: 8rem 1rem 4rem;
+    padding: 7rem 1rem 3rem;
     min-height: 60vh;
+    padding-top: calc(7rem + env(safe-area-inset-top));
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.25rem);
   }
 
   .features-section,
   .mechanics-section,
   .cta-section {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 2.5rem;
   }
 
   .cta-buttons {
     flex-direction: column;
     align-items: stretch;
+    gap: 1rem;
   }
 
   .cta-button {
     width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
+    min-height: 48px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .features-grid {
@@ -338,42 +345,85 @@
   }
 
   .feature-card {
-    padding: 2rem;
+    padding: 1.75rem;
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .feature-description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
   }
 
   .mechanic-card {
-    padding: 2rem;
+    padding: 1.75rem;
   }
 
-  .cookie-content {
-    padding: 0 1rem;
+  .mechanic-title {
+    font-size: 1.5rem;
   }
 
-  .cookie-buttons {
-    flex-direction: column;
-  }
-
-  .cookie-btn.personalize {
-    margin-right: 0;
+  .mechanic-description {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .logo-text {
-    display: none;
+  .hero-section {
+    padding: 6rem 0.875rem 2.5rem;
+    padding-top: calc(6rem + env(safe-area-inset-top));
   }
 
-  .header-nav {
-    gap: 0.5rem;
+  .hero-title {
+    font-size: clamp(2rem, 12vw, 3rem);
   }
 
-  .nav-item {
-    font-size: 0.75rem;
-    padding: 0.25rem 0;
+  .hero-subtitle {
+    font-size: clamp(0.9375rem, 4vw, 1.125rem);
+    padding: 0 0.5rem;
+  }
+
+  .features-section,
+  .mechanics-section,
+  .cta-section {
+    padding: 2.5rem 0.875rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    margin-bottom: 2rem;
   }
 
   .feature-card,
   .mechanic-card {
     padding: 1.5rem;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+  }
+
+  .feature-title {
+    font-size: 1.125rem;
+  }
+
+  .feature-description {
+    font-size: 0.875rem;
+  }
+
+  .cta-title {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+
+  .cta-subtitle {
+    font-size: clamp(1rem, 3vw, 1.125rem);
   }
 }

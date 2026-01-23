@@ -45,3 +45,4 @@ public/assets/Even-App-Logos/Outline-DarkBG/EE-OutlineTransparent.png
 public/assets/Even-App-Logos/DarkBG/EE-Transparent.png
 public/assets/Even-App-Logos/DarkBG/EE-SolidWhite.png
 src/firebase.ts
+.env

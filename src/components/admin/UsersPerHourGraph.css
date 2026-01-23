@@ -1,0 +1,98 @@
+.admin-users-per-hour-graph {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.admin-graph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.admin-graph-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.admin-graph-placeholder {
+  font-size: 0.875rem;
+  color: #b0b0b0;
+  font-style: italic;
+}
+
+.admin-graph-container {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  min-height: 300px;
+}
+
+.admin-graph-bars {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+  flex: 1;
+  height: 300px;
+}
+
+.admin-graph-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+}
+
+.admin-graph-bar-container {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  padding: 0 0.25rem;
+}
+
+.admin-graph-bar {
+  width: 100%;
+  background: linear-gradient(to top, #4a9eff, #6bb6ff);
+  border-radius: 4px 4px 0 0;
+  min-height: 2px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.admin-graph-bar:hover {
+  background: linear-gradient(to top, #5aaeff, #7bc6ff);
+  opacity: 0.9;
+}
+
+.admin-graph-label {
+  font-size: 0.75rem;
+  color: #b0b0b0;
+  margin-top: 0.5rem;
+  text-align: center;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-graph-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  padding-right: 0.5rem;
+  min-width: 40px;
+}
+
+.admin-graph-y-label {
+  font-size: 0.75rem;
+  color: #b0b0b0;
+  text-align: right;
+}
+

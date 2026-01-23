@@ -2,6 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  height: -webkit-fill-available;
 }
 
 body {
@@ -13,11 +20,30 @@ body {
   background-color: #1a1a1a;
   color: #ffffff;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   overflow-x: hidden;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Improve touch targets on mobile */
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+/* Prevent text selection on buttons */
+button {
+  user-select: none;
+  -webkit-user-select: none;
 }
 

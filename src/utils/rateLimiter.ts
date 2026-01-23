@@ -59,7 +59,7 @@ export class RateLimiter {
   /**
    * Record a request
    */
-  private recordRequest(): void {
+  recordRequest(): void {
     const now = Date.now()
     const stored = localStorage.getItem(this.storageKey)
 

@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import PrivacyPolicy from './legal/PrivacyPolicy'
 import CommunityGuidelines from './legal/CommunityGuidelines'
-import TermsOfService from './legal/TermsOfService'
 import CookiePolicy from './legal/CookiePolicy'
 import './Footer.css'
 
 export default function Footer() {
   const navigate = useNavigate()
-  const [openModal, setOpenModal] = useState<'privacy' | 'terms' | 'cookies' | 'guidelines' | null>(null)
+  const [openModal, setOpenModal] = useState<'cookies' | 'guidelines' | null>(null)
 
   return (
     <footer className="main-footer">
@@ -43,10 +41,10 @@ export default function Footer() {
         <div className="footer-section">
           <h3 className="footer-heading">Legal</h3>
           <nav className="footer-nav">
-            <button className="footer-link" onClick={() => setOpenModal('privacy')}>
+            <button className="footer-link" onClick={() => navigate('/privacy-policy')}>
               Privacy Policy
             </button>
-            <button className="footer-link" onClick={() => setOpenModal('terms')}>
+            <button className="footer-link" onClick={() => navigate('/terms-of-service')}>
               Terms of Service
             </button>
             <button className="footer-link" onClick={() => setOpenModal('cookies')}>
@@ -74,9 +72,7 @@ export default function Footer() {
         </p>
       </div>
 
-      <PrivacyPolicy isOpen={openModal === 'privacy'} onClose={() => setOpenModal(null)} />
       <CommunityGuidelines isOpen={openModal === 'guidelines'} onClose={() => setOpenModal(null)} />
-      <TermsOfService isOpen={openModal === 'terms'} onClose={() => setOpenModal(null)} />
       <CookiePolicy isOpen={openModal === 'cookies'} onClose={() => setOpenModal(null)} />
     </footer>
   )

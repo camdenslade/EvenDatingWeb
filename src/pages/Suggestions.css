@@ -11,6 +11,7 @@
   z-index: 1;
   max-width: 1000px;
   margin: 0 auto;
+  padding-bottom: 4rem;
 }
 
 @media (min-width: 1400px) {
@@ -173,10 +174,20 @@
 @media (max-width: 768px) {
   .suggestions-page {
     padding: 5rem 1rem 2rem;
+    padding-top: calc(5rem + env(safe-area-inset-top));
   }
 
   .page-title {
-    font-size: 2rem;
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .logo-small {
+    height: 64px;
+    margin-bottom: 0.875rem;
   }
 
   .suggestions-form {
@@ -186,10 +197,53 @@
   .form-footer {
     flex-direction: column;
     align-items: stretch;
+    gap: 1rem;
   }
 
   .submit-button {
     width: 100%;
+    min-height: 48px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .rate-limit-info {
+    text-align: center;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .suggestions-page {
+    padding: 4.5rem 0.875rem 1.5rem;
+    padding-top: calc(4.5rem + env(safe-area-inset-top));
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .logo-small {
+    height: 56px;
+  }
+
+  .page-title {
+    font-size: clamp(1.75rem, 8vw, 2rem);
+  }
+
+  .page-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .suggestions-form {
+    padding: 1.25rem;
+  }
+
+  .success-message,
+  .error-message {
+    padding: 0.875rem;
+    font-size: 0.875rem;
   }
 }
 

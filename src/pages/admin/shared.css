@@ -1,0 +1,90 @@
+/* Shared styles for admin pages */
+
+.admin-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #b0b0b0;
+  font-size: 1rem;
+}
+
+.admin-empty-state {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.admin-message {
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  border: 1px solid;
+}
+
+.admin-message.success {
+  background-color: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #ffffff;
+}
+
+.admin-message.error {
+  background-color: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ffffff;
+}
+
+.admin-refresh-button {
+  background-color: #ffffff;
+  color: #222222;
+  border: none;
+  border-radius: 30px;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.admin-refresh-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Light Mode Styles */
+.admin-layout.light-mode .admin-loading {
+  color: #666666;
+}
+
+.admin-layout.light-mode .admin-empty-state {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.admin-layout.light-mode .admin-message.success {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #065f46;
+}
+
+.admin-layout.light-mode .admin-message.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #991b1b;
+}
+
+.admin-layout.light-mode .admin-refresh-button {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+.admin-layout.light-mode .admin-refresh-button:hover {
+  background-color: #333333;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+

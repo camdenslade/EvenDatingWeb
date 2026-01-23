@@ -1,0 +1,83 @@
+.admin-tokens {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.admin-tokens-header {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.admin-tokens-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.admin-tokens-description {
+  color: #b0b0b0;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.admin-tokens-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.admin-token-type-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.admin-token-type-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.admin-token-type-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.admin-token-type-card p {
+  color: #b0b0b0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.admin-tokens-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-tokens-action-button {
+  background-color: #ffffff;
+  color: #222222;
+  text-decoration: none;
+  border-radius: 30px;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.admin-tokens-action-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+

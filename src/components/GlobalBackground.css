@@ -55,3 +55,32 @@
   }
 }
 
+@media (max-width: 768px) {
+  .background-circle,
+  .background-rect {
+    opacity: 0.3;
+  }
+
+  .background-circle {
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  .circle-b {
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  .background-rect {
+    width: 120% !important;
+    height: 180px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .background-circle,
+  .background-rect {
+    opacity: 0.25;
+  }
+}
+

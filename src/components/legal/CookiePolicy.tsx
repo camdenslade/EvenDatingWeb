@@ -10,7 +10,7 @@ export default function CookiePolicy({ isOpen, onClose }: CookiePolicyProps) {
     <Modal isOpen={isOpen} onClose={onClose} title="Cookies Policy">
       <div>
         <p>
-          <strong>Last Updated: December 2025</strong>
+          <strong>Last Updated: January 2026</strong>
         </p>
 
         <p>
@@ -29,8 +29,9 @@ export default function CookiePolicy({ isOpen, onClose }: CookiePolicyProps) {
 
         <h3>2. Third-Party Cookies</h3>
         <p>
-          Even may use analytics and monitoring services that set their own cookies or identifiers.
-          These providers do not receive message content or sensitive personal data.
+          Even Dating LLC may use analytics and monitoring services that set their own cookies or identifiers.
+          Analytics is disabled by default and only enabled if you consent. These providers do not
+          receive message content or sensitive personal data.
         </p>
 
         <h3>3. Disabling Cookies</h3>
