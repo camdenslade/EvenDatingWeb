@@ -156,14 +156,24 @@
   top: 100%;
   left: 0;
   right: 0;
+<<<<<<< HEAD
   background-color: rgba(0, 139, 146, 0.98);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+=======
+  background-color: rgba(34, 34, 34, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.3s ease;
   opacity: 0;
+<<<<<<< HEAD
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+=======
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
 }
 
 .mobile-menu.open {

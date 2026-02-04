@@ -59,6 +59,12 @@ export default function Header() {
           <button className="nav-item" onClick={() => navigate('/support')}>
             Support
           </button>
+<<<<<<< HEAD
+=======
+          <button className="nav-item login-btn" onClick={() => navigate('/admin/login')}>
+            Log in
+          </button>
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
         </nav>
 
         <button
@@ -76,12 +82,17 @@ export default function Header() {
         </button>
       </div>
 
+<<<<<<< HEAD
       <div
+=======
+      <div 
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
         ref={menuRef}
         className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
       >
         <button
           className="mobile-nav-item"
+<<<<<<< HEAD
           onClick={() => handleNavigate('/features')}
         >
           Features
@@ -92,6 +103,11 @@ export default function Header() {
           onClick={() => handleNavigate('/safety')}
         >
           Safety
+=======
+          onClick={() => handleNavigate('/suggestions')}
+        >
+          Suggestions
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
         </button>
 
         <button
@@ -102,10 +118,17 @@ export default function Header() {
         </button>
 
         <button
+<<<<<<< HEAD
           className="mobile-nav-item"
           onClick={() => handleNavigate('/faq')}
         >
           FAQ
+=======
+          className="mobile-nav-item mobile-login-btn"
+          onClick={() => handleNavigate('/admin/login')}
+        >
+          Log in
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
         </button>
       </div>
     </header>

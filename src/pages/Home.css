@@ -1,7 +1,11 @@
 .home-page {
   min-height: 100vh;
   min-height: -webkit-fill-available;
+<<<<<<< HEAD
   background-color: #00A2AA;
+=======
+  background-color: #222222;
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
   color: #ffffff;
   display: flex;
   flex-direction: column;

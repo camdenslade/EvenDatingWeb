@@ -7,7 +7,11 @@ import './LegalPage.css'
 export default function PrivacyPolicyPage() {
   return (
     <div className="legal-page">
+<<<<<<< HEAD
       <GlobalBackground mode="teal" />
+=======
+      <GlobalBackground mode="dark" />
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
       <Header />
 
       <main className="legal-wrapper" aria-labelledby="privacy-policy-title">

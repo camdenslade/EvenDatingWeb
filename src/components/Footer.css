@@ -1,6 +1,11 @@
 .main-footer {
+<<<<<<< HEAD
   background-color: rgba(0, 120, 126, 0.95);
   border-top: 1px solid rgba(255, 255, 255, 0.25);
+=======
+  background-color: rgba(20, 20, 20, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
   padding: 2rem 2rem 1rem;
   margin-top: auto;
   position: relative;
@@ -111,7 +116,11 @@
   max-width: 1400px;
   margin: 0 auto;
   padding-top: 1.5rem;
+<<<<<<< HEAD
   border-top: 1px solid rgba(255, 255, 255, 0.25);
+=======
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
   text-align: center;
 }
 

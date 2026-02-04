@@ -1,11 +1,19 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+<<<<<<< HEAD
+=======
+import CommunityGuidelines from './legal/CommunityGuidelines'
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
 import CookiePolicy from './legal/CookiePolicy'
 import './Footer.css'
 
 export default function Footer() {
   const navigate = useNavigate()
+<<<<<<< HEAD
   const [showCookieModal, setShowCookieModal] = useState(false)
+=======
+  const [openModal, setOpenModal] = useState<'cookies' | 'guidelines' | null>(null)
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
 
   return (
     <footer className="main-footer">
@@ -85,7 +93,12 @@ export default function Footer() {
         </p>
       </div>
 
+<<<<<<< HEAD
       <CookiePolicy isOpen={showCookieModal} onClose={() => setShowCookieModal(false)} />
+=======
+      <CommunityGuidelines isOpen={openModal === 'guidelines'} onClose={() => setOpenModal(null)} />
+      <CookiePolicy isOpen={openModal === 'cookies'} onClose={() => setOpenModal(null)} />
+>>>>>>> b6dd2eb5ae2a58309fd147bc863486e4f02fdf38
     </footer>
   )
 }
