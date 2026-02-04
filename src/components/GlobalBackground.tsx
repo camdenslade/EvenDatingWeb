@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react'
 import './GlobalBackground.css'
 
 interface GlobalBackgroundProps {
-  mode?: 'dark' | 'light'
+  mode?: 'dark' | 'light' | 'teal'
 }
 
-export default function GlobalBackground({ mode = 'dark' }: GlobalBackgroundProps) {
+export default function GlobalBackground({ mode = 'teal' }: GlobalBackgroundProps) {
   const circleARef = useRef<HTMLDivElement>(null)
   const circleBRef = useRef<HTMLDivElement>(null)
   const rectRef = useRef<HTMLDivElement>(null)
@@ -23,8 +23,10 @@ export default function GlobalBackground({ mode = 'dark' }: GlobalBackgroundProp
     }
   }, [])
 
-  const shapeColor = mode === 'dark' ? '#FFFFFF' : '#000000'
-  const opacity = mode === 'dark' ? 0.10 : 0.12
+  // Teal theme matches mobile app default theme
+  const circleColor = mode === 'teal' ? '#7FDDE0' : mode === 'dark' ? '#FFFFFF' : '#000000'
+  const rectColor = mode === 'teal' ? '#198686' : mode === 'dark' ? '#FFFFFF' : '#000000'
+  const opacity = mode === 'teal' ? 0.5 : mode === 'dark' ? 0.10 : 0.12
 
   return (
     <div className="global-background" style={{ pointerEvents: 'none' }}>
@@ -32,7 +34,7 @@ export default function GlobalBackground({ mode = 'dark' }: GlobalBackgroundProp
         ref={circleARef}
         className="background-circle circle-a"
         style={{
-          backgroundColor: shapeColor,
+          backgroundColor: circleColor,
           opacity,
           width: '260px',
           height: '260px',
@@ -44,7 +46,7 @@ export default function GlobalBackground({ mode = 'dark' }: GlobalBackgroundProp
         ref={circleBRef}
         className="background-circle circle-b"
         style={{
-          backgroundColor: shapeColor,
+          backgroundColor: circleColor,
           opacity,
           width: '180px',
           height: '180px',
@@ -56,7 +58,7 @@ export default function GlobalBackground({ mode = 'dark' }: GlobalBackgroundProp
         ref={rectRef}
         className="background-rect"
         style={{
-          backgroundColor: shapeColor,
+          backgroundColor: rectColor,
           opacity,
           bottom: '200px',
           left: '-10%',

@@ -17,6 +17,7 @@ import {
   containsSpamPatterns,
   generateCSRFToken,
 } from '../utils/validation'
+import { getApiBaseUrl, joinApiUrl } from '../utils/apiUrl'
 import './Support.css'
 
 function Support() {
@@ -138,25 +139,43 @@ function Support() {
         priority: ticketFormData.priority,
         subject: sanitizeInput(ticketFormData.subject),
         description: sanitizeInput(ticketFormData.description),
-        csrfToken: ticketFormData.csrfToken,
       }
 
-      // Create mailto link with form data
-      const emailSubject = encodeURIComponent(`[${sanitizedData.category.toUpperCase()}] ${sanitizedData.subject} [Priority: ${sanitizedData.priority}]`)
-      const emailBody = encodeURIComponent(
-        `Support Ticket Submission\n\n` +
-        `Name: ${sanitizedData.name}\n` +
-        `Email: ${sanitizedData.email}\n` +
-        `Category: ${sanitizedData.category}\n` +
-        `Priority: ${sanitizedData.priority}\n\n` +
-        `Description:\n${sanitizedData.description}`
-      )
+      const apiBaseUrl = getApiBaseUrl()
+      // Backend exposes POST /support for ticket creation (no /ticket suffix)
+      const url = joinApiUrl(apiBaseUrl, '/support')
       
-      const mailtoLink = `mailto:support@evendating.com?subject=${emailSubject}&body=${emailBody}`
-      
-      // Open email client
-      window.location.href = mailtoLink
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sanitizedData),
+      })
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: 'Failed to submit ticket' }))
+        
+        if (response.status === 429) {
+          setTicketErrors({
+            general: 'Too many requests. Please wait before submitting another ticket.',
+          })
+        } else if (response.status === 400) {
+          // Validation errors from backend
+          const backendErrors = errorData.message || errorData.errors || {}
+          setTicketErrors({
+            ...(typeof backendErrors === 'string' ? { general: backendErrors } : backendErrors),
+          })
+        } else {
+          setTicketErrors({
+            general: errorData.message || 'An error occurred. Please try again later.',
+          })
+        }
+        return
+      }
+
+      // Success
+      ticketRateLimiter.recordRequest()
       setTicketSuccess(true)
       setTicketFormData({
         name: '',
@@ -174,7 +193,7 @@ function Support() {
       }, 5000)
     } catch (error) {
       setTicketErrors({
-        general: 'An error occurred. Please try again later.',
+        general: error instanceof Error ? error.message : 'An error occurred. Please try again later.',
       })
     } finally {
       setIsSubmittingTicket(false)
@@ -199,7 +218,7 @@ function Support() {
 
   return (
     <div className="support-page">
-      <GlobalBackground mode="dark" />
+      <GlobalBackground mode="teal" />
       <Header />
 
       <div className="content">

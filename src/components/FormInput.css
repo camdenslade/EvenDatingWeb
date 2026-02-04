@@ -15,37 +15,56 @@
 }
 
 .required {
-  color: #ff4444;
+  color: #ff6b6b;
 }
 
 .form-input,
 .form-textarea {
   width: 100%;
   padding: 0.875rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 8px;
   color: #ffffff;
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+@media (max-width: 768px) {
+  .form-input,
+  .form-textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 1rem;
+    min-height: 44px;
+  }
+
+  .form-textarea {
+    min-height: 120px;
+  }
+
+  .form-label {
+    font-size: 0.9375rem;
+  }
 }
 
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .form-input.error,
 .form-textarea.error {
-  border-color: #ff4444;
+  border-color: #ff6b6b;
 }
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: #888888;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .form-textarea {
@@ -55,7 +74,7 @@
 
 .form-error {
   font-size: 0.75rem;
-  color: #ff4444;
+  color: #ff6b6b;
   margin-top: -0.25rem;
 }
 

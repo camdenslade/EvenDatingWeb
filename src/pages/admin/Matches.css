@@ -1,0 +1,221 @@
+.admin-matches {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.admin-matches-search {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.admin-matches-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.admin-matches-list,
+.admin-match-details {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.admin-matches-list h3,
+.admin-match-details h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.admin-matches-table {
+  overflow-x: auto;
+}
+
+.admin-matches-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-matches-table th,
+.admin-matches-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-matches-table th {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+.admin-matches-table td {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+}
+
+.admin-matches-table tbody tr {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.admin-matches-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-matches-table tbody tr.selected {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.admin-match-id {
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+.admin-match-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.admin-match-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.admin-match-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.admin-match-button.unmatch {
+  background: rgba(239, 68, 68, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.admin-match-button.unmatch:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 1);
+  transform: translateY(-2px);
+}
+
+.admin-match-button.mute {
+  background: rgba(245, 158, 11, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.admin-match-button.mute:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 1);
+  transform: translateY(-2px);
+}
+
+.admin-match-button.clear {
+  background: rgba(59, 130, 246, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.admin-match-button.clear:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 1);
+  transform: translateY(-2px);
+}
+
+.admin-match-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-match-user-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-match-user-actions h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.admin-match-user-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-match-user-buttons .admin-match-button {
+  flex: 1;
+}
+
+.admin-match-messages {
+  margin-top: 2rem;
+}
+
+.admin-match-messages h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.admin-messages-list {
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.admin-message-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.admin-message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.admin-message-sender {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: monospace;
+}
+
+.admin-message-time {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-message-content {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  word-wrap: break-word;
+}
+
+@media (max-width: 1024px) {
+  .admin-matches-layout {
+    grid-template-columns: 1fr;
+  }
+}
+

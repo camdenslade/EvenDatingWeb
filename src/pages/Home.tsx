@@ -9,7 +9,7 @@ function Home() {
 
   return (
     <div className="home-page">
-      <GlobalBackground mode="dark" />
+      <GlobalBackground mode="teal" />
       <Header />
 
       {/* Main Hero Section */}

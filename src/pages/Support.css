@@ -2,7 +2,7 @@
   min-height: 100vh;
   padding: 6rem 1.5rem 2rem;
   position: relative;
-  background-color: #222222;
+  background-color: #00A2AA;
   overflow-x: hidden;
 }
 
@@ -11,6 +11,7 @@
   z-index: 1;
   max-width: 900px;
   margin: 0 auto;
+  padding-bottom: 4rem;
 }
 
 .page-header {
@@ -37,7 +38,7 @@
 
 .page-subtitle {
   font-size: 1.125rem;
-  color: #b0b0b0;
+  color: #E6F6F7;
   margin: 0;
 }
 
@@ -65,8 +66,8 @@
 }
 
 .contact-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   padding: 2rem;
   text-align: center;
@@ -93,7 +94,7 @@
 
 .contact-description {
   font-size: 0.875rem;
-  color: #b0b0b0;
+  color: #E6F6F7;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -111,7 +112,7 @@
 
 .contact-button {
   background-color: #ffffff;
-  color: #000000;
+  color: #00A2AA;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -138,8 +139,8 @@
 }
 
 .faq-item {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.3s;
@@ -159,7 +160,7 @@
 
 .faq-answer {
   font-size: 0.9375rem;
-  color: #b0b0b0;
+  color: #E6F6F7;
   line-height: 1.6;
   margin: 0;
 }
@@ -175,8 +176,8 @@
 }
 
 .resource-link {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 12px;
   padding: 1.2rem;
   display: flex;
@@ -207,8 +208,8 @@
 }
 
 .ticket-prompt {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
@@ -216,7 +217,7 @@
 
 .ticket-prompt-text {
   font-size: 1rem;
-  color: #b0b0b0;
+  color: #E6F6F7;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -241,7 +242,7 @@
 
 .ticket-button {
   background-color: #ffffff;
-  color: #000000;
+  color: #00A2AA;
   border: none;
   padding: 0.875rem 2rem;
   border-radius: 8px;
@@ -250,6 +251,9 @@
   cursor: pointer;
   transition: all 0.2s;
   font-family: inherit;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .ticket-button:hover {
@@ -258,8 +262,8 @@
 }
 
 .ticket-form-container {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   padding: 2rem;
 }
@@ -292,7 +296,7 @@
 }
 
 .form-select option {
-  background: #1a1a1a;
+  background: #00A2AA;
   color: #ffffff;
 }
 
@@ -341,6 +345,9 @@
   cursor: pointer;
   transition: all 0.2s;
   font-family: inherit;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .cancel-button:hover {
@@ -350,7 +357,7 @@
 
 .submit-button {
   background-color: #ffffff;
-  color: #000000;
+  color: #00A2AA;
   border: none;
   padding: 0.875rem 2rem;
   border-radius: 8px;
@@ -359,6 +366,9 @@
   cursor: pointer;
   transition: all 0.2s;
   font-family: inherit;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .submit-button:hover:not(:disabled) {
@@ -378,44 +388,159 @@
 
 .rate-limit-info {
   font-size: 0.75rem;
-  color: #b0b0b0;
+  color: #E6F6F7;
   margin: 0;
 }
 
 @media (max-width: 768px) {
   .support-page {
     padding: 5rem 1rem 2rem;
+    padding-top: calc(5rem + env(safe-area-inset-top));
   }
 
   .page-title {
-    font-size: 2rem;
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .logo-small {
+    font-size: 3.5rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 5vw, 2rem);
+    margin-bottom: 1.5rem;
   }
 
   .contact-options {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-card {
+    padding: 1.75rem;
   }
 
   .resources-list {
     grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  .resource-link {
+    padding: 1rem;
+    min-height: 48px;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .ticket-form-container {
     padding: 1.5rem;
   }
 
+  .ticket-button {
+    width: 100%;
+    min-height: 48px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .form-footer {
     flex-direction: column;
     align-items: stretch;
+    gap: 1rem;
   }
 
   .form-footer-right {
     flex-direction: column;
     width: 100%;
+    gap: 1rem;
   }
 
   .submit-button,
   .cancel-button {
     width: 100%;
+    min-height: 48px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .rate-limit-info {
+    text-align: center;
+    font-size: 0.8125rem;
+  }
+
+  .faq-item {
+    padding: 1.25rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+  }
+
+  .faq-answer {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .support-page {
+    padding: 4.5rem 0.875rem 1.5rem;
+    padding-top: calc(4.5rem + env(safe-area-inset-top));
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .logo-small {
+    font-size: 3rem;
+  }
+
+  .page-title {
+    font-size: clamp(1.75rem, 8vw, 2rem);
+  }
+
+  .page-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .support-sections {
+    gap: 3rem;
+  }
+
+  .contact-card {
+    padding: 1.5rem;
+  }
+
+  .contact-icon {
+    font-size: 2.5rem;
+  }
+
+  .ticket-form-container {
+    padding: 1.25rem;
+  }
+
+  .ticket-prompt {
+    padding: 1.5rem;
+  }
+
+  .ticket-prompt-text {
+    font-size: 0.9375rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .email-info {
+    font-size: 0.875rem;
+    margin-top: 1.25rem;
+  }
+
+  .email-link {
+    word-break: break-word;
   }
 }
 

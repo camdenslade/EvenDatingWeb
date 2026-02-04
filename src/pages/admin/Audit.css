@@ -1,0 +1,114 @@
+.admin-audit {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.admin-audit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.admin-audit-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.admin-audit-table-container {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow-x: auto;
+}
+
+.admin-audit-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-audit-table th,
+.admin-audit-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-audit-table th {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.875rem;
+  background: rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+}
+
+.admin-audit-table td {
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+
+.admin-audit-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-audit-timestamp {
+  white-space: nowrap;
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+.admin-audit-event {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.admin-audit-payload {
+  max-width: 500px;
+  overflow-x: auto;
+}
+
+.admin-audit-payload pre {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.admin-audit-load-more {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.admin-load-more-button {
+  background-color: #ffffff;
+  color: #222222;
+  border: none;
+  border-radius: 30px;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.admin-load-more-button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.admin-load-more-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
